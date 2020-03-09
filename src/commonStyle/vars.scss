@@ -1,0 +1,44 @@
+
+
+
+
+.whiteTheme{
+    --brandC:#409EFF;
+    --successC:#67C23A;
+    --warningC:#E6A23C;
+    --mainTC:#303133;
+    --nomalTC:#606266;
+    --secondTC:#909399;
+    --placeTC:#C0C4CC;
+    --mainBorderC:#DCDFE6;
+    --backC: #F2F6FC;
+}
+
+.blackTheme{
+    --brandC:#409EFF;
+    --successC:#67C23A;
+    --warningC:#E6A23C;
+    --mainTC:#F2F6FC;
+    --nomalTC:#C0C4CC;
+    --secondTC:#909399;
+    --placeTC:#C0C4CC;
+    --mainBorderC:#DCDFE6;
+    --backC: #606266;
+}
+
+
+
+$backC: var(--backC);
+$brandC: var(--brandC);
+$successC: var(--successC);
+$warningC: var(--warningC);
+$mainTC: var(--mainTC);
+$nomalTC: var(--nomalTC);
+$secondTC: var(--secondTC);
+$placeTC: var(--placeTC);
+$mainBorderC: var(--mainBorderC);
+
+
+#root{
+    color: $nomalTC;
+}
