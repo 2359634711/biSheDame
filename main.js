@@ -9,7 +9,7 @@ function createWindow(){
         }
     })
 
-    win.loadURL('http://localhost:8080')
+    win.loadURL('http://localhost:8081')
 
     win.webContents.openDevTools()
 }

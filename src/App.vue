@@ -1,11 +1,9 @@
 <template>
     <div id="root" class="whiteTheme">
         <Header/>
-        <router-link to='/home'>Go Home</router-link>
-        <router-link to='/user'>Go User</router-link>
         <router-view></router-view>
-        <div>{{msg}}</div>
-        <Footer/>
+        <!-- <div>{{msg}}</div> -->
+        <!-- <Footer/> -->
     </div>
 </template>
 <script>
@@ -26,5 +24,10 @@ export default {
 </script>
 
 <style lang="scss">
-
+#root{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    // overflow: hidden;
+}
 </style>
