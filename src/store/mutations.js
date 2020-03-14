@@ -5,8 +5,13 @@ const mutations = {
         state.count++
     },
     ['SETOPTIONS'] (state, options) {
-        console.log(options)
         state.options = {...options}
+    },
+    ['SETSOLUTION'] (state, solution) {
+        state.solution = {...solution}
+    },
+    ['ADDLOG'] (state, message) {
+        state.log.push(message)
     }
 }
 

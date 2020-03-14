@@ -1,6 +1,8 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu} = require('electron')
+
 
 function createWindow(){
+    Menu.setApplicationMenu(null)
     const win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -9,7 +11,9 @@ function createWindow(){
         }
     })
 
-    win.loadURL('http://localhost:8081')
+
+
+    win.loadURL('http://localhost:8080')
 
     win.webContents.openDevTools()
 }

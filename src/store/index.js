@@ -15,9 +15,8 @@ const store = new Vuex.Store({
             fai0: null,
             Kfai: null
         },
-        solutions: {
-
-        }
+        solution: {},
+        log: []
     },
     getters: {
         count(state) {
@@ -39,6 +38,13 @@ const store = new Vuex.Store({
                 }
             }
             return optionsLsit
+        },
+        solution (state) {
+            return state.solution
+        },
+        log (state) {
+            console.log(state.log)
+            return state.log
         }
     },
     mutations,

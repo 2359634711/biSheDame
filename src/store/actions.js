@@ -6,6 +6,12 @@ const actions = {
     },
     setoptionsAsync ({commit}, options) {
         commit(types.SETOPTIONS, options)
+    },
+    setSolutionAsync ({commit}, solution) {
+        commit(types.SETSOLUTION, solution)
+    },
+    addLogAsync ({commit}, message) {
+        commit(types.ADDLOG, message)
     }
 }
 

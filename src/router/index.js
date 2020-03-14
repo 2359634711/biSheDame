@@ -4,7 +4,12 @@ import Runtime from '../components/runtime/Runtime.vue'
 import Solution from '../components/solution/Solution.vue'
 const routes = [
     {
+        path: '/',
+        name: 'default',
+        redirect: '/before'
+    },{
         path: '/before',
+        default: true,
         component: Before
     },{
         path: '/runtime',
