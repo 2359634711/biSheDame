@@ -15,6 +15,14 @@ const store = new Vuex.Store({
             fai0: null,
             Kfai: null
         },
+        moduleList:[{
+            id: 0,
+            name: '自然曲线模型'
+        },{
+            id: 1,
+            name: '直——增——稳——降——稳型定向井眼轨道设计'
+        }],
+        currentModuleIndex: 0,
         solution: {},
         log: []
     },
@@ -45,6 +53,12 @@ const store = new Vuex.Store({
         log (state) {
             console.log(state.log)
             return state.log
+        },
+        currentModuleIndex(state) {
+            return state.currentModuleIndex
+        },
+        moduleList(state) {
+            return state.moduleList
         }
     },
     mutations,

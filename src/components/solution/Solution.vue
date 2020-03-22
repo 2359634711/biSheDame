@@ -13,7 +13,7 @@
         </div>
 
         <div class="wrap">
-            <el-table v-if="tabActive == 0" :data="solution.dataAll" border stripe>
+            <el-table v-show="tabActive == 0" :data="solution.dataAll" border stripe>
                 <el-table-column v-for="(col, index) in columns"
                     :prop="col.id"
                     :key="col.id"
@@ -24,9 +24,7 @@
                 </el-table-column>
             </el-table>
 
-            <div class="canvas" v-else-if="tabActive == 1" ref="chart3d">
-            </div>
-            <div class="canvas" ref="chart2d" v-else>
+            <div class="canvas" v-show="tabActive != 0" ref="chart">
             </div>
         </div>
         
@@ -40,6 +38,7 @@ window.onresize = () => {
     myChart.resize(true)
 }
 import {mapGetters} from 'vuex'
+import makeOption from './makeOption'
 export default {
     data(){
         return {
@@ -53,12 +52,16 @@ export default {
                 label: '三维井眼轨道图'
             },{
                 id: '2',
-                label: '二维井眼轨道图'
+                label: '二维(N-H)井眼轨道图'
+            },{
+                id: '3',
+                label: '二维(N-E)井眼轨道图'
             }],
             tabActive: 0
         }
     },
     mounted() {
+        myChart = this.$echarts.init(this.$refs.chart) 
         this.columns = this.columns.map((v, i) => {
             return {
                 id: ''+i,
@@ -71,15 +74,35 @@ export default {
     },
     methods: {
         load3dChart() {
-                myChart = this.$echarts.init(this.$refs.chart3d)
-                myChart.setOption(this.solution.option)
+            myChart.setOption(makeOption('3d', this.solution.data3D, ['N坐标', 'E坐标', 'H深度']), true)
+        },
+        load2dChart(type) { 
+            if(type == 'N-H'){
+                myChart.setOption(makeOption('2d', this.solution.data3D.map(v => [v[0], v[2]]), ['N坐标', 'H深度']), true)
+            }
+            if(type == 'N-E'){
+                myChart.setOption(makeOption('2d', this.solution.data3D.map(v => [v[0], v[1]]), ['N坐标', 'E坐标']), true)
+            }
         }
     },
     watch: {
         tabActive(val) {
             if(val == 1) {
-                this.$nextTick(() => {
+                this.$nextTick(() => { 
+                myChart.resize(true)
                     this.load3dChart()
+                })
+            }
+            if(val == 2) {
+                this.$nextTick(() => {
+                myChart.resize(true)
+                    this.load2dChart('N-H')
+                })
+            }
+            if(val == 3) {
+                this.$nextTick(() => {
+                myChart.resize(true)
+                    this.load2dChart('N-E')
                 })
             }
         }

@@ -30,7 +30,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import calculate from "./runtime";
+import {naturalCurveModule} from "./runtime";
 export default {
   data() {
     return {
@@ -52,7 +52,7 @@ export default {
   methods: {
     ...mapActions(["setSolutionAsync", "addLogAsync"]),
     run() {
-      calculate(this.addLogAsync).then(res => {
+      naturalCurveModule(this.addLogAsync).then(res => {
         this.setSolutionAsync(res).then(res => {
           this.$alert("计算完成");
           this.$router.push("/solution");

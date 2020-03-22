@@ -1,4 +1,3 @@
-import {INCREMENT_ASYNC} from './mutation-types'
 
 const mutations = {
     ['INCREMENT'] (state) {
@@ -12,6 +11,9 @@ const mutations = {
     },
     ['ADDLOG'] (state, message) {
         state.log.push(message)
+    },
+    ['SETCURRENTMODULEINDEX'] (state, index){
+        state.currentModuleIndex = index
     }
 }
 

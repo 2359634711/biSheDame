@@ -12,6 +12,9 @@ const actions = {
     },
     addLogAsync ({commit}, message) {
         commit(types.ADDLOG, message)
+    },
+    setCurrentModuleIndexAsync({commit}, index) {
+        commit(types.SETCURRENTMODULEINDEX, index)
     }
 }
 

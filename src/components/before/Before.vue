@@ -1,56 +1,53 @@
 <template>
     <div class="before">
-        <el-form :model="options" ref="form" label-width="100px">
-            <el-form-item label="起始的井斜角">
-                <el-input placeholder="请输入起始的井斜角alp0" v-model="options.alp0"></el-input>
-            </el-form-item>
-            <el-form-item label="起始的方位角">
-                <el-input placeholder="请输入起始的井斜角alp0" v-model="options.fai0"></el-input>
-            </el-form-item>
-            <el-form-item label="Kalp">
-                <el-input placeholder="请输入Kalp" v-model="options.Kalp"></el-input>
-            </el-form-item>
-            <el-form-item label="Kfai">
-                <el-input placeholder="请输入Kfai" v-model="options.Kfai"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="onSubmit">创建算例</el-button>
-            </el-form-item>
-        </el-form>
+        <el-dialog
+            title="更换模式"
+            :visible.sync="changeVisible"
+            @close="closeChange">
+            <change-module 
+                :close="closeChange" 
+            ></change-module>
+        </el-dialog>
+        
+        <div class="currentModule">
+            当前选择的是：
+            <span class="moduleName">{{moduleList[currentModuleIndex].name}}
+            </span>
+            <el-button class="changeBtn" type="text" @click="changeModule">点击更换模式</el-button>
+        </div>
+
+        <natural-curve-module 
+            v-if="currentModuleIndex == 0"  
+        />
+
+       
     </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import ChangeModule from './ChangeModule.vue'
+import NaturalCurveModule from './NaturalCurveModule.vue'
 export default {
-    data(){
+    components: {
+        ChangeModule,
+        NaturalCurveModule
+    },
+    data() {
         return {
-            msg: 'Im Before',
-            options: {
-                count: null,
-                step: null,
-                maxL: null,
-                alp0: null,
-                Kalp: null,
-                fai0: null,
-                Kfai: null
-            }
+            changeVisible: false
         }
     },
     methods: {
-        ...mapActions([
-            'incrementAsync',
-            'setoptionsAsync'
-            ]),
-        onSubmit () {
-            this.setoptionsAsync(this.options).then(res => {
-                this.$alert('提交成功')
-                this.$router.push('/runtime')
-            })
+        changeModule(){
+            this.changeVisible = true
+        },
+        closeChange(){
+            this.changeVisible = false
         }
     },
-    mounted () {
-        this.options = this.$store.getters.options
+    computed: {
+        ...mapGetters(['currentModuleIndex', 'moduleList'])
     }
 }
 </script>
@@ -58,9 +55,24 @@ export default {
 
 <style lang="scss" scoped>
 .before{
-    max-width: 300px;
+    width: 100%;
     overflow: hidden;
-    margin: 0 auto;
-    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.currentModule{
+    margin-top: 20px;
+    height: 50px;
+}
+.moduleName{
+    padding: 10px;
+    background: $successC;
+    color: #fff;
+}
+.changeBtn{
+    display: inline-block;
 }
 </style>
