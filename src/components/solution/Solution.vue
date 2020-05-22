@@ -43,7 +43,8 @@ export default {
     data(){
         return {
             msg: 'Im Solution',
-            columns: ['detaL m', 'α (°)', 'fai (°)', 'detaN m', 'detaE m', 'detaH m', 'detaS m', 'Kv (°)/30m', 'Kh (°)/30m', 'K (°)/30m', 'tao (°)/30m'],
+            // columns: ['detaL m', 'α (°)', 'fai (°)', 'detaN m', 'detaE m', 'detaH m', 'detaS m', 'Kv (°)/30m', 'Kh (°)/30m', 'K (°)/30m', 'tao (°)/30m'],
+            columns: ['L', 'alph', 'fai', 'H', 'N', 'E', 'S', 'Kalph', 'Kfai'],
             tabs: [{
                 id: '0',
                 label: '数据'
@@ -56,6 +57,12 @@ export default {
             },{
                 id: '3',
                 label: '二维(N-E)井眼轨道图'
+            },{
+                id: '4',
+                label: '二维(E-H)井眼轨道图'
+            },{
+                id: '5',
+                label: '二维(s-H)井眼轨道图'
             }],
             tabActive: 0
         }
@@ -83,6 +90,12 @@ export default {
             if(type == 'N-E'){
                 myChart.setOption(makeOption('2d', this.solution.data3D.map(v => [v[0], v[1]]), ['N坐标', 'E坐标']), true)
             }
+            if(type == 'E-H'){
+                myChart.setOption(makeOption('2d', this.solution.data3D.map(v => [v[1], v[2]]), ['E坐标', 'H深度']), true)
+            }
+            if(type == 'S-H'){
+                myChart.setOption(makeOption('2d', this.solution.data3D.map(v => [v[3], v[2]]), ['s水平位移', 'H深度']), true)
+            }
         }
     },
     watch: {
@@ -105,7 +118,28 @@ export default {
                     this.load2dChart('N-E')
                 })
             }
+            if(val == 4) {
+                this.$nextTick(() => {
+                myChart.resize(true)
+                    this.load2dChart('E-H')
+                })
+            }
+            if(val == 5) {
+                this.$nextTick(() => {
+                myChart.resize(true)
+                    this.load2dChart('S-H')
+                })
+            }
         }
+        // ,
+        // solution:{
+        //     handler(newValue){
+        //         this.columns = newValue.shift()
+        //         console.log(`dataChange:${newValue}`)
+        //         return newValue
+        //     },
+        //     deep: true
+        // }
     }
 }
 </script>

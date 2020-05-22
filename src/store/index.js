@@ -4,63 +4,72 @@ Vue.use(Vuex)
 
 import mutations from './mutations'
 import actions from './actions'
+import getters from './getters'
 const store = new Vuex.Store({
     state: {
-        options: {
-            count: null,
-            step: null,
-            maxL: null,
-            alp0: null,
-            Kalp: null,
-            fai0: null,
-            Kfai: null
-        },
-        moduleList:[{
+        moduleList: [{
             id: 0,
-            name: '自然曲线模型'
-        },{
+            name: '自然曲线模型',
+            options: {
+                count: null,
+                step: null,
+                maxL: null,
+                alp0: null,
+                Kalp: null,
+                fai0: null,
+                Kfai: null
+            },
+            solution: {}
+        }, {
             id: 1,
-            name: '直——增——稳——降——稳型定向井眼轨道设计'
+            name: '5段式定向井数值计算',
+            options: {
+                Ht: null,
+                faiShe: null,
+                Ha: null,
+                K2: null,
+                K4: null,
+                a5: null,
+                deltaH5: null,
+                deltaHtf: null
+            },
+            solution: {
+            }
+        }, {
+            id: 2,
+            name: '5段式定向井自然曲线模型',
+            options: {
+                Ht: null,
+                faiShe: null,
+                Ha: null,
+                K2: null,
+                K4: null,
+                a5: null,
+                deltaH5: null,
+                deltaHtf: null
+            },
+            solution: {
+            }
+        }, {
+            id: 3,
+            name: 'target to a point 自然曲线模型',
+            options: {
+                Ht: null,
+                faiShe: null,
+                Ha: null,
+                K2: null,
+                K4: null,
+                a5: null,
+                deltaH5: null,
+                deltaHtf: null
+            },
+            solution: {
+            }
         }],
         currentModuleIndex: 0,
-        solution: {},
         log: []
     },
-    getters: {
-        count(state) {
-            return state.count
-        },
-        options (state) {
-            return {...state.options}
-        },
-        optionsList (state) {
-            let options = {...state.options}
-            let optionsLsit = []
-            for (const key in options) {
-                if (options.hasOwnProperty(key)) {
-                    const element = options[key];
-                    optionsLsit.push({
-                        title: key,
-                        value: element
-                    })
-                }
-            }
-            return optionsLsit
-        },
-        solution (state) {
-            return state.solution
-        },
-        log (state) {
-            console.log(state.log)
-            return state.log
-        },
-        currentModuleIndex(state) {
-            return state.currentModuleIndex
-        },
-        moduleList(state) {
-            return state.moduleList
-        }
-    },
+    getters,
     mutations,
     actions
 })

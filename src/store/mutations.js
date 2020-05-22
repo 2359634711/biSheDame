@@ -1,18 +1,21 @@
 
+import types from './mutation-types'
+
 const mutations = {
-    ['INCREMENT'] (state) {
+    [types.INCREMENT](state) {
         state.count++
     },
-    ['SETOPTIONS'] (state, options) {
-        state.options = {...options}
+    [types.SETOPTIONS](state, options) {
+        state.moduleList[state.currentModuleIndex].options = { ...options }
     },
-    ['SETSOLUTION'] (state, solution) {
-        state.solution = {...solution}
+    [types.SETSOLUTION](state, solution) {
+        console.log(solution)
+        state.moduleList[state.currentModuleIndex].solution = { ...solution }
     },
-    ['ADDLOG'] (state, message) {
+    [types.ADDLOG](state, message) {
         state.log.push(message)
     },
-    ['SETCURRENTMODULEINDEX'] (state, index){
+    [types.SETCURRENTMODULEINDEX](state, index) {
         state.currentModuleIndex = index
     }
 }

@@ -11,7 +11,10 @@ const actions = {
         commit(types.SETSOLUTION, solution)
     },
     addLogAsync ({commit}, message) {
-        commit(types.ADDLOG, message)
+        return new Promise(resolve => {
+            commit(types.ADDLOG, message)
+            resolve()
+        })
     },
     setCurrentModuleIndexAsync({commit}, index) {
         commit(types.SETCURRENTMODULEINDEX, index)

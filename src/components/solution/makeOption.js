@@ -3,13 +3,16 @@ let option3D = {
     tooltip: {},
     backgroundColor: '#fff',
     xAxis3D: {
-        type: 'value'
+        type: 'value',
+        scale: true
     },
     yAxis3D: {
-        type: 'value'
+        type: 'value',
+        scale: true
     },
     zAxis3D: {
-        type: 'value'
+        type: 'value',
+        scale: true
     },
     grid3D: {
         viewControl: {
@@ -28,13 +31,16 @@ let option2D = {
     tooltip: {},
     backgroundColor: '#fff',
     xAxis: {
-        type: 'value'
+        type: 'value',
+        scale: true
     },
     yAxis: {
-        type: 'value'
+        type: 'value',
+        scale: true
     },
     series: [{
-        type: 'line'
+        type: 'line',
+        scale: true
     }]
 };
 
