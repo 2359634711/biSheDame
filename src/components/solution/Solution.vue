@@ -44,7 +44,7 @@ export default {
         return {
             msg: 'Im Solution',
             // columns: ['detaL m', 'α (°)', 'fai (°)', 'detaN m', 'detaE m', 'detaH m', 'detaS m', 'Kv (°)/30m', 'Kh (°)/30m', 'K (°)/30m', 'tao (°)/30m'],
-            columns: ['L', 'alph', 'fai', 'H', 'N', 'E', 'S', 'Kalph', 'Kfai'],
+            columns: ['L', 'α', 'φ', 'H', 'N', 'E', 'S', 'Kα', 'Kφ'],
             tabs: [{
                 id: '0',
                 label: '数据'
